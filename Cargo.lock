@@ -475,6 +475,7 @@ dependencies = [
 name = "git-server"
 version = "0.1.0"
 dependencies = [
+ "anyhow",
  "axum",
  "clap",
  "git-server-core",
