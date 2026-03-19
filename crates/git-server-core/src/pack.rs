@@ -285,21 +285,8 @@ fn generate_pack_sync(
     let repo = gix::open(repo_path)?;
     let mut response = Vec::new();
 
-    // Build NAK/ACK lines
-    if haves.is_empty() {
-        // Fresh clone: send NAK
-        response.extend_from_slice(&pktline::encode(b"NAK\n"));
-    } else {
-        // Acknowledge existing objects
-        for have in haves {
-            if repo.find_object(*have).is_ok() {
-                let ack_line = format!("ACK {have}\n");
-                response.extend_from_slice(&pktline::encode(ack_line.as_bytes()));
-            }
-        }
-        // Always end ack section with NAK
-        response.extend_from_slice(&pktline::encode(b"NAK\n"));
-    }
+    // Build NAK/ACK line (basic ack mode -- single ACK or NAK)
+    response.extend_from_slice(&pktline::encode(b"NAK\n"));
 
     // Collect objects: walk commits from wants, excluding haves
     let have_set: HashSet<gix::ObjectId> = haves.iter().copied().collect();
