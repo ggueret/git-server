@@ -1,0 +1,17 @@
+[package]
+name = "git-server-http"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+git-server-core = { workspace = true }
+axum = { workspace = true }
+tokio = { workspace = true }
+tracing = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+
+[dev-dependencies]
+tempfile = "3"
+tokio = { workspace = true, features = ["test-util"] }
