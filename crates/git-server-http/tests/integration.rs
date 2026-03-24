@@ -180,7 +180,10 @@ async fn nonexistent_repo_returns_404() {
 
     let server = TestServer::start(root.path()).await;
 
-    let url = format!("{}/info/refs?service=git-upload-pack", server.url("nope.git"));
+    let url = format!(
+        "{}/info/refs?service=git-upload-pack",
+        server.url("nope.git")
+    );
     let resp = reqwest::get(&url).await.expect("GET nope.git info/refs");
     assert_eq!(resp.status(), 404);
 

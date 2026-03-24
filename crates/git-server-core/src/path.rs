@@ -23,9 +23,9 @@ fn normalize(path: &Path) -> PathBuf {
 pub fn resolve_repo_path(root: &Path, relative: &str) -> Result<PathBuf> {
     let candidate = root.join(relative);
 
-    let canonical_root = root.canonicalize().map_err(|_| {
-        Error::RepoNotFound(relative.to_string())
-    })?;
+    let canonical_root = root
+        .canonicalize()
+        .map_err(|_| Error::RepoNotFound(relative.to_string()))?;
 
     // Lexically normalize the candidate to detect traversal before hitting the filesystem.
     let normalized = normalize(&canonical_root.join(relative));
@@ -33,9 +33,9 @@ pub fn resolve_repo_path(root: &Path, relative: &str) -> Result<PathBuf> {
         return Err(Error::PathTraversal(candidate));
     }
 
-    let canonical = candidate.canonicalize().map_err(|_| {
-        Error::RepoNotFound(relative.to_string())
-    })?;
+    let canonical = candidate
+        .canonicalize()
+        .map_err(|_| Error::RepoNotFound(relative.to_string()))?;
 
     if !canonical.starts_with(&canonical_root) {
         return Err(Error::PathTraversal(candidate));

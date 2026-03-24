@@ -1,9 +1,9 @@
 use axum::{
+    Json,
     body::Body,
     extract::{Path, Query, State},
-    http::{header, HeaderMap, StatusCode},
+    http::{HeaderMap, StatusCode, header},
     response::Response,
-    Json,
 };
 use serde::Deserialize;
 use tokio_util::io::ReaderStream;
@@ -26,8 +26,7 @@ pub struct InfoRefsQuery {
 ///
 /// Returns `None` if the path does not end with `suffix`.
 fn strip_path_suffix<'a>(path: &'a str, suffix: &str) -> Option<&'a str> {
-    path.strip_suffix(suffix)
-        .map(|s| s.trim_end_matches('/'))
+    path.strip_suffix(suffix).map(|s| s.trim_end_matches('/'))
 }
 
 /// GET /{*path} -- dispatches to info_refs when path ends with /info/refs
@@ -36,9 +35,8 @@ pub async fn info_refs_dispatch(
     Path(path): Path<String>,
     Query(query): Query<InfoRefsQuery>,
 ) -> Result<Response, AppError> {
-    let repo_path = strip_path_suffix(&path, "/info/refs").ok_or_else(|| {
-        AppError::NotFound(format!("not found: /{path}"))
-    })?;
+    let repo_path = strip_path_suffix(&path, "/info/refs")
+        .ok_or_else(|| AppError::NotFound(format!("not found: /{path}")))?;
     info_refs_inner(&store, repo_path, query).await
 }
 
@@ -74,9 +72,8 @@ pub async fn upload_pack_dispatch(
     headers: HeaderMap,
     request: axum::body::Bytes,
 ) -> Result<Response, AppError> {
-    let repo_path = strip_path_suffix(&path, "/git-upload-pack").ok_or_else(|| {
-        AppError::NotFound(format!("not found: /{path}"))
-    })?;
+    let repo_path = strip_path_suffix(&path, "/git-upload-pack")
+        .ok_or_else(|| AppError::NotFound(format!("not found: /{path}")))?;
     upload_pack_inner(&store, repo_path, headers, request).await
 }
 
@@ -107,10 +104,7 @@ async fn upload_pack_inner(
     let stream = ReaderStream::new(reader);
     Ok(Response::builder()
         .status(StatusCode::OK)
-        .header(
-            header::CONTENT_TYPE,
-            "application/x-git-upload-pack-result",
-        )
+        .header(header::CONTENT_TYPE, "application/x-git-upload-pack-result")
         .header(header::CACHE_CONTROL, "no-cache")
         .body(Body::from_stream(stream))
         .unwrap())
