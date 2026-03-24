@@ -1,7 +1,7 @@
 use axum::{
+    Json,
     http::StatusCode,
     response::{IntoResponse, Response},
-    Json,
 };
 use serde::Serialize;
 
@@ -28,7 +28,14 @@ impl IntoResponse for AppError {
             Self::Internal(msg) => (StatusCode::INTERNAL_SERVER_ERROR, "internal_error", msg),
         };
 
-        (status, Json(ErrorBody { error: error_code, message })).into_response()
+        (
+            status,
+            Json(ErrorBody {
+                error: error_code,
+                message,
+            }),
+        )
+            .into_response()
     }
 }
 

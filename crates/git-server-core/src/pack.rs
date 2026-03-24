@@ -48,10 +48,7 @@ impl UploadPackRequest {
                 )
             })?;
             let len = usize::from_str_radix(len_str, 16).map_err(|_| {
-                Error::InvalidRepo(
-                    std::path::PathBuf::new(),
-                    "invalid pkt-line length".into(),
-                )
+                Error::InvalidRepo(std::path::PathBuf::new(), "invalid pkt-line length".into())
             })?;
 
             if len == 0 {
@@ -66,7 +63,10 @@ impl UploadPackRequest {
 
             let payload = &body[pos + 4..pos + len];
             let line = std::str::from_utf8(payload).map_err(|_| {
-                Error::InvalidRepo(std::path::PathBuf::new(), "invalid UTF-8 in pkt-line".into())
+                Error::InvalidRepo(
+                    std::path::PathBuf::new(),
+                    "invalid UTF-8 in pkt-line".into(),
+                )
             })?;
             let line = line.trim_end_matches('\n');
 
@@ -483,9 +483,7 @@ mod tests {
         );
 
         // Find PACK signature in the binary response
-        let pack_found = buf
-            .windows(4)
-            .any(|window| window == b"PACK");
+        let pack_found = buf.windows(4).any(|window| window == b"PACK");
         assert!(pack_found, "response should contain PACK signature");
     }
 }

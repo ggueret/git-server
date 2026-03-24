@@ -39,10 +39,7 @@ mod tests {
     #[test]
     fn encode_comment_line() {
         let encoded = encode_comment("service=git-upload-pack");
-        assert_eq!(
-            &encoded,
-            b"001e# service=git-upload-pack\n"
-        );
+        assert_eq!(&encoded, b"001e# service=git-upload-pack\n");
     }
 
     #[test]

@@ -39,9 +39,6 @@ mod tests {
     #[test]
     fn error_display_path_traversal() {
         let err = Error::PathTraversal(PathBuf::from("../etc/passwd"));
-        assert_eq!(
-            err.to_string(),
-            "path traversal rejected: ../etc/passwd"
-        );
+        assert_eq!(err.to_string(), "path traversal rejected: ../etc/passwd");
     }
 }

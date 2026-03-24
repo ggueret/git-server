@@ -1,8 +1,8 @@
 mod helpers;
 
+use helpers::{TestServer, create_bare_repo_with_commits};
 use std::process::Command;
 use tempfile::TempDir;
-use helpers::{create_bare_repo_with_commits, TestServer};
 
 #[tokio::test(flavor = "multi_thread")]
 async fn concurrent_clones_same_repo() {

@@ -9,13 +9,9 @@ struct Fixture {
     bare_path: PathBuf,
 }
 
-static SMALL: LazyLock<Fixture> = LazyLock::new(|| {
-    create_fixture(5, 10, 1024, &[], &[])
-});
+static SMALL: LazyLock<Fixture> = LazyLock::new(|| create_fixture(5, 10, 1024, &[], &[]));
 
-static MEDIUM: LazyLock<Fixture> = LazyLock::new(|| {
-    create_fixture(200, 100, 5 * 1024, &[], &[])
-});
+static MEDIUM: LazyLock<Fixture> = LazyLock::new(|| create_fixture(200, 100, 5 * 1024, &[], &[]));
 
 static LARGE: LazyLock<Fixture> = LazyLock::new(|| {
     create_fixture(
@@ -23,7 +19,13 @@ static LARGE: LazyLock<Fixture> = LazyLock::new(|| {
         500,
         10 * 1024,
         &[("feature-a", 500), ("feature-b", 1000)],
-        &[("v0.1", 400), ("v0.2", 800), ("v0.3", 1200), ("v0.4", 1600), ("v0.5", 2000)],
+        &[
+            ("v0.1", 400),
+            ("v0.2", 800),
+            ("v0.3", 1200),
+            ("v0.4", 1600),
+            ("v0.5", 2000),
+        ],
     )
 });
 
@@ -51,9 +53,16 @@ fn create_fixture(
     let work_dir = dir.path().join("work");
 
     run_git(&["init", "--bare", bare_path.to_str().unwrap()], None);
-    run_git(&["symbolic-ref", "HEAD", "refs/heads/main"], Some(&bare_path));
     run_git(
-        &["clone", bare_path.to_str().unwrap(), work_dir.to_str().unwrap()],
+        &["symbolic-ref", "HEAD", "refs/heads/main"],
+        Some(&bare_path),
+    );
+    run_git(
+        &[
+            "clone",
+            bare_path.to_str().unwrap(),
+            work_dir.to_str().unwrap(),
+        ],
         None,
     );
     run_git(&["config", "user.name", "Bench"], Some(&work_dir));
@@ -62,8 +71,7 @@ fn create_fixture(
     // Create initial files
     for i in 0..file_count {
         let content = "x".repeat(file_size);
-        std::fs::write(work_dir.join(format!("file{i}.txt")), &content)
-            .expect("write file");
+        std::fs::write(work_dir.join(format!("file{i}.txt")), &content).expect("write file");
     }
     run_git(&["add", "."], Some(&work_dir));
     run_git(&["commit", "-m", "initial: add all files"], Some(&work_dir));
@@ -72,13 +80,9 @@ fn create_fixture(
     for c in 1..commit_count {
         let file_idx = c % file_count;
         let content = format!("commit {c}\n{}", "y".repeat(file_size));
-        std::fs::write(work_dir.join(format!("file{file_idx}.txt")), &content)
-            .expect("write file");
+        std::fs::write(work_dir.join(format!("file{file_idx}.txt")), &content).expect("write file");
         run_git(&["add", "."], Some(&work_dir));
-        run_git(
-            &["commit", "-m", &format!("commit {c}")],
-            Some(&work_dir),
-        );
+        run_git(&["commit", "-m", &format!("commit {c}")], Some(&work_dir));
 
         for (name, at) in branches {
             if c == *at {

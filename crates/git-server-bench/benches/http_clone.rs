@@ -101,10 +101,10 @@ fn extract_head_oid(refs_body: &[u8]) -> String {
             };
             if next_len >= 44 && pos + next_len <= refs_body.len() {
                 let payload = &refs_body[pos + 4..pos + 4 + 40];
-                if let Ok(oid) = std::str::from_utf8(payload) {
-                    if oid.chars().all(|c| c.is_ascii_hexdigit()) {
-                        return oid.to_string();
-                    }
+                if let Ok(oid) = std::str::from_utf8(payload)
+                    && oid.chars().all(|c| c.is_ascii_hexdigit())
+                {
+                    return oid.to_string();
                 }
             }
             pos += next_len.max(4);
