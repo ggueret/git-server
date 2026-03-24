@@ -5,6 +5,9 @@ edition.workspace = true
 license.workspace = true
 publish = false
 
+[lib]
+bench = false
+
 [dependencies]
 git-server-core = { workspace = true }
 git-server-http = { workspace = true }
