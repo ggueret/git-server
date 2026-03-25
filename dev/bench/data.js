@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1774396982769,
+  "lastUpdate": 1774407510906,
   "repoUrl": "https://github.com/ggueret/git-server",
   "entries": {
     "git-server Benchmarks": [
@@ -263,6 +263,138 @@ window.BENCHMARK_DATA = {
             "name": "ref_advertisement/advertise/large",
             "value": 407638,
             "range": "± 30480",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "ggueret@users.noreply.github.com",
+            "name": "Geoffrey Guéret",
+            "username": "ggueret"
+          },
+          "committer": {
+            "email": "g.gueret@gmail.com",
+            "name": "Geoffrey Guéret",
+            "username": "ggueret"
+          },
+          "distinct": true,
+          "id": "071075ac1b6e7d8b15db1b6d5f5e7a78e677e6cb",
+          "message": "fix(core): add Error::Protocol variant for parse errors\n\nReplace Error::InvalidRepo(PathBuf::new(), ...) misuse in\nUploadPackRequest::parse with a dedicated Error::Protocol\nvariant. Map it to HTTP 400 in the error conversion layer\nand remove the manual .map_err() workaround in the handler.\n\nCloses #7",
+          "timestamp": "2026-03-25T03:38:39+01:00",
+          "tree_id": "1da1b3e34730e81b6003f49984a2ab029983daa5",
+          "url": "https://github.com/ggueret/git-server/commit/071075ac1b6e7d8b15db1b6d5f5e7a78e677e6cb"
+        },
+        "date": 1774407510447,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "concurrent_clones/clones/1",
+            "value": 73872935,
+            "range": "± 1359044",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "concurrent_clones/clones/2",
+            "value": 111024271,
+            "range": "± 29580128",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "concurrent_clones/clones/4",
+            "value": 220027200,
+            "range": "± 5954594",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "concurrent_clones/clones/8",
+            "value": 441342248,
+            "range": "± 10047060",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "concurrent_clones/clones/16",
+            "value": 869178919,
+            "range": "± 9583011",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "concurrent_clones/clones/32",
+            "value": 1761884061,
+            "range": "± 22464346",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "git_clone/clone/small",
+            "value": 66424174,
+            "range": "± 1198674",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "git_clone/clone/medium",
+            "value": 72332897,
+            "range": "± 2343333",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "git_clone/clone/large",
+            "value": 1856945421,
+            "range": "± 14056482",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "http_clone/clone/small",
+            "value": 85942337,
+            "range": "± 1024410",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "http_clone/clone/medium",
+            "value": 71899946,
+            "range": "± 3150971",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "http_clone/clone/large",
+            "value": 1386556409,
+            "range": "± 17031551",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "pack_generation/clone/small",
+            "value": 786498,
+            "range": "± 19073",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "pack_generation/clone/medium",
+            "value": 24667035,
+            "range": "± 429730",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "pack_generation/clone/large",
+            "value": 1241504114,
+            "range": "± 7303342",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "ref_advertisement/advertise/small",
+            "value": 238138,
+            "range": "± 3898",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "ref_advertisement/advertise/medium",
+            "value": 303610,
+            "range": "± 3384",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "ref_advertisement/advertise/large",
+            "value": 405108,
+            "range": "± 3707",
             "unit": "ns/iter"
           }
         ]
