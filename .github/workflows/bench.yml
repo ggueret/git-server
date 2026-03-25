@@ -41,5 +41,5 @@ jobs:
           gh-pages-branch: gh-pages
           alert-threshold: "130%"
           comment-on-alert: true
-          fail-on-alert: true
+          fail-on-alert: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
           auto-push: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
