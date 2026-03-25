@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1774407510906,
+  "lastUpdate": 1774440793809,
   "repoUrl": "https://github.com/ggueret/git-server",
   "entries": {
     "git-server Benchmarks": [
@@ -395,6 +395,138 @@ window.BENCHMARK_DATA = {
             "name": "ref_advertisement/advertise/large",
             "value": 405108,
             "range": "± 3707",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "ggueret@users.noreply.github.com",
+            "name": "Geoffrey Guéret",
+            "username": "ggueret"
+          },
+          "committer": {
+            "email": "g.gueret@gmail.com",
+            "name": "Geoffrey Guéret",
+            "username": "ggueret"
+          },
+          "distinct": true,
+          "id": "0758b94347da1c0940955da2081f09e3b64ce818",
+          "message": "ci(bench): only fail on regression alert for main, not PRs\n\nCI runners have variable performance, causing false positive\nregression alerts on PRs. Keep comment-on-alert for visibility\nbut only fail the build on push to main where sequential runs\non the same runner type make comparisons meaningful.",
+          "timestamp": "2026-03-25T12:54:39+01:00",
+          "tree_id": "c3580602a63d7ec76f7a811ce0c6373bca0bb3e2",
+          "url": "https://github.com/ggueret/git-server/commit/0758b94347da1c0940955da2081f09e3b64ce818"
+        },
+        "date": 1774440793090,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "concurrent_clones/clones/1",
+            "value": 99162293,
+            "range": "± 7037579",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "concurrent_clones/clones/2",
+            "value": 140314535,
+            "range": "± 38498804",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "concurrent_clones/clones/4",
+            "value": 231592785,
+            "range": "± 6395461",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "concurrent_clones/clones/8",
+            "value": 405845297,
+            "range": "± 4704739",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "concurrent_clones/clones/16",
+            "value": 807056343,
+            "range": "± 11565297",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "concurrent_clones/clones/32",
+            "value": 1629184613,
+            "range": "± 21063763",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "git_clone/clone/small",
+            "value": 37828154,
+            "range": "± 10974971",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "git_clone/clone/medium",
+            "value": 99287257,
+            "range": "± 6706985",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "git_clone/clone/large",
+            "value": 1610126024,
+            "range": "± 17479453",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "http_clone/clone/small",
+            "value": 46254476,
+            "range": "± 7351816",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "http_clone/clone/medium",
+            "value": 119119640,
+            "range": "± 9199070",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "http_clone/clone/large",
+            "value": 1296425007,
+            "range": "± 10196212",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "pack_generation/clone/small",
+            "value": 687286,
+            "range": "± 15326",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "pack_generation/clone/medium",
+            "value": 28432215,
+            "range": "± 807054",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "pack_generation/clone/large",
+            "value": 1173598472,
+            "range": "± 2166856",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "ref_advertisement/advertise/small",
+            "value": 118414,
+            "range": "± 1086",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "ref_advertisement/advertise/medium",
+            "value": 159325,
+            "range": "± 14019",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "ref_advertisement/advertise/large",
+            "value": 211176,
+            "range": "± 3797",
             "unit": "ns/iter"
           }
         ]
