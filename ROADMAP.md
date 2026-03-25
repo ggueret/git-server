@@ -14,7 +14,7 @@ Native smart HTTP Git server with gitoxide. Read-only clone and fetch.
 - [x] Content-Type validation
 - [x] Integration tests (clone, fetch, errors)
 - [x] Load tests (concurrent clones)
-- [ ] Criterion benchmarks (pack generation, ref advertisement, clone end-to-end, concurrent clones)
+- [x] Criterion benchmarks (pack generation, ref advertisement, clone end-to-end, concurrent clones)
 
 ## v0.2 -- Streaming and efficiency
 
