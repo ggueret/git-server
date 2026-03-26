@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1774476473337,
+  "lastUpdate": 1774488374261,
   "repoUrl": "https://github.com/ggueret/git-server",
   "entries": {
     "git-server Benchmarks": [
@@ -1055,6 +1055,138 @@ window.BENCHMARK_DATA = {
             "name": "ref_advertisement/advertise/large",
             "value": 404141,
             "range": "± 2129",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "ggueret@users.noreply.github.com",
+            "name": "Geoffrey Guéret",
+            "username": "ggueret"
+          },
+          "committer": {
+            "email": "ggueret@users.noreply.github.com",
+            "name": "Geoffrey Guéret",
+            "username": "ggueret"
+          },
+          "distinct": true,
+          "id": "b3e31fb805fffde6d11fd867909c991df76ee3c4",
+          "message": "fix: add description and repository to crate manifests",
+          "timestamp": "2026-03-26T02:09:45+01:00",
+          "tree_id": "d06e46591577d204779d92877b0e1a07f4f00201",
+          "url": "https://github.com/ggueret/git-server/commit/b3e31fb805fffde6d11fd867909c991df76ee3c4"
+        },
+        "date": 1774488373839,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "concurrent_clones/clones/1",
+            "value": 106025324,
+            "range": "± 10991347",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "concurrent_clones/clones/2",
+            "value": 118938878,
+            "range": "± 8899920",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "concurrent_clones/clones/4",
+            "value": 166705240,
+            "range": "± 2950210",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "concurrent_clones/clones/8",
+            "value": 274230958,
+            "range": "± 9387921",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "concurrent_clones/clones/16",
+            "value": 498978205,
+            "range": "± 5660670",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "concurrent_clones/clones/32",
+            "value": 995384637,
+            "range": "± 8337972",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "git_clone/clone/small",
+            "value": 66108998,
+            "range": "± 647695",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "git_clone/clone/medium",
+            "value": 106060351,
+            "range": "± 5879612",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "git_clone/clone/large",
+            "value": 1550811615,
+            "range": "± 18527949",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "http_clone/clone/small",
+            "value": 86320636,
+            "range": "± 689696",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "http_clone/clone/medium",
+            "value": 121555286,
+            "range": "± 9617519",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "http_clone/clone/large",
+            "value": 1491891144,
+            "range": "± 5088817",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "pack_generation/clone/small",
+            "value": 998080,
+            "range": "± 30214",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "pack_generation/clone/medium",
+            "value": 32400715,
+            "range": "± 2955901",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "pack_generation/clone/large",
+            "value": 1281575909,
+            "range": "± 18354148",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "ref_advertisement/advertise/small",
+            "value": 238625,
+            "range": "± 2567",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "ref_advertisement/advertise/medium",
+            "value": 302259,
+            "range": "± 1565",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "ref_advertisement/advertise/large",
+            "value": 405008,
+            "range": "± 3922",
             "unit": "ns/iter"
           }
         ]
