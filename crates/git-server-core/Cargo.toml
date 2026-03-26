@@ -1,8 +1,10 @@
 [package]
 name = "git-server-core"
+description = "Core Git protocol operations for git-server"
 version.workspace = true
 edition.workspace = true
 license.workspace = true
+repository.workspace = true
 
 [dependencies]
 gix = { workspace = true }

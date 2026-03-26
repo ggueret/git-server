@@ -1,8 +1,10 @@
 [package]
 name = "git-server-http"
+description = "HTTP layer for git-server using Axum"
 version.workspace = true
 edition.workspace = true
 license.workspace = true
+repository.workspace = true
 
 [dependencies]
 git-server-core = { workspace = true }
