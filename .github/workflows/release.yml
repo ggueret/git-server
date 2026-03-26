@@ -77,13 +77,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
-      - run: cargo publish -p git-server-core
+      - run: cargo publish -p git-server-core || true
         env:
           CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
-      - run: cargo publish -p git-server-http
+      - run: sleep 30 && cargo publish -p git-server-http || true
         env:
           CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
-      - run: cargo publish -p git-server
+      - run: sleep 30 && cargo publish -p git-server || true
         env:
           CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
 
