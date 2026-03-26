@@ -14,8 +14,8 @@ license = "MIT"
 repository = "https://github.com/ggueret/git-server"
 
 [workspace.dependencies]
-git-server-core = { path = "crates/git-server-core" }
-git-server-http = { path = "crates/git-server-http" }
+git-server-core = { path = "crates/git-server-core", version = "0.1.0" }
+git-server-http = { path = "crates/git-server-http", version = "0.1.0" }
 gix = "0.80.0"
 axum = "0.8.8"
 tokio = { version = "1.50.0", features = ["full"] }
