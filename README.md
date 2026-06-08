@@ -1,7 +1,7 @@
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/logo/git-server-mark-dark-rot90.svg">
-    <img src="assets/logo/git-server-mark-rot90.svg" width="96" height="96" alt="git-server">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/logo/git-server-mark-dark.svg">
+    <img src="assets/logo/git-server-mark.svg" width="96" height="96" alt="git-server">
   </picture>
 </p>
 
