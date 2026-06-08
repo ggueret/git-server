@@ -1,11 +1,9 @@
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/logo/git-server-mark-dark.svg">
-    <img src="assets/logo/git-server-mark.svg" width="96" height="96" alt="git-server">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/logo/git-server-lockup-dark.svg">
+    <img src="assets/logo/git-server-lockup.svg" width="240" alt="git-server">
   </picture>
 </p>
-
-<h1 align="center">git-server</h1>
 
 <p align="center">Dependency-free smart HTTP Git server for local testing.</p>
 
