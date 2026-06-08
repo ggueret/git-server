@@ -62,7 +62,6 @@ Repository listing response:
   {
     "name": "my-project.git",
     "relative_path": "my-project.git",
-    "absolute_path": "/srv/repos/my-project.git",
     "description": "My project"
   }
 ]
