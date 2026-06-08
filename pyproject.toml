@@ -1,0 +1,33 @@
+[build-system]
+requires = ["maturin>=1.13,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "git-server"
+dynamic = ["version"]
+description = "Dependency-free smart HTTP Git server"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [{ name = "Geoffrey Guéret", email = "geoffrey@gueret.dev" }]
+keywords = ["git", "http", "server", "gitoxide", "clone", "fetch"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: MacOS",
+    "Operating System :: POSIX :: Linux",
+    "Topic :: Software Development :: Version Control :: Git",
+    "Topic :: Internet :: WWW/HTTP :: HTTP Servers",
+]
+
+[project.urls]
+Homepage = "https://github.com/ggueret/git-server"
+Repository = "https://github.com/ggueret/git-server"
+Issues = "https://github.com/ggueret/git-server/issues"
+
+[tool.maturin]
+bindings = "bin"
+manifest-path = "crates/git-server/Cargo.toml"
+strip = true
