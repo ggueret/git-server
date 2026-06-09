@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1781028157640,
+  "lastUpdate": 1781032716437,
   "repoUrl": "https://github.com/ggueret/git-server",
   "entries": {
     "git-server Benchmarks": [
@@ -1511,6 +1511,138 @@ window.BENCHMARK_DATA = {
             "name": "concurrent_clones/clones/32",
             "value": 967443379,
             "range": "± 6964514",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "ggueret@users.noreply.github.com",
+            "name": "Geoffrey Guéret",
+            "username": "ggueret"
+          },
+          "committer": {
+            "email": "g.gueret@gmail.com",
+            "name": "Geoffrey Guéret",
+            "username": "ggueret"
+          },
+          "distinct": true,
+          "id": "26bda85a9862cabf7ddb823836645e37672db838",
+          "message": "fix(bench): disable git auto-gc in fixture setup\n\nFixture generation runs hundreds of rapid commits, triggering a background\ngc --auto that can prune still-unreachable objects mid-run and corrupt the\nODB. Seen as \"invalid object / Error building trees\" on commit and \"eof\nbefore pack header\" on push. Disable gc.auto and maintenance.auto for all\nfixture git commands.",
+          "timestamp": "2026-06-09T21:02:14+02:00",
+          "tree_id": "305433606932d04055fa7afd66e2ab57511535dd",
+          "url": "https://github.com/ggueret/git-server/commit/26bda85a9862cabf7ddb823836645e37672db838"
+        },
+        "date": 1781032715453,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "concurrent_clones/clones/1",
+            "value": 105203028,
+            "range": "± 10300998",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "concurrent_clones/clones/2",
+            "value": 117646608,
+            "range": "± 5816179",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "concurrent_clones/clones/4",
+            "value": 163680719,
+            "range": "± 15520741",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "concurrent_clones/clones/8",
+            "value": 269477118,
+            "range": "± 8562292",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "concurrent_clones/clones/16",
+            "value": 484678053,
+            "range": "± 5886636",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "concurrent_clones/clones/32",
+            "value": 987556130,
+            "range": "± 9840128",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "git_clone/clone/small",
+            "value": 65725774,
+            "range": "± 5867976",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "git_clone/clone/medium",
+            "value": 105301249,
+            "range": "± 6071288",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "git_clone/clone/large",
+            "value": 1547802389,
+            "range": "± 27300849",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "http_clone/clone/small",
+            "value": 83945569,
+            "range": "± 11690498",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "http_clone/clone/medium",
+            "value": 121660196,
+            "range": "± 5774584",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "http_clone/clone/large",
+            "value": 1506196318,
+            "range": "± 7372434",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "pack_generation/clone/small",
+            "value": 955183,
+            "range": "± 25777",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "pack_generation/clone/medium",
+            "value": 30074520,
+            "range": "± 3625624",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "pack_generation/clone/large",
+            "value": 1290166494,
+            "range": "± 22065061",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "ref_advertisement/advertise/small",
+            "value": 207415,
+            "range": "± 2880",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "ref_advertisement/advertise/medium",
+            "value": 267304,
+            "range": "± 3360",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "ref_advertisement/advertise/large",
+            "value": 351184,
+            "range": "± 1703",
             "unit": "ns/iter"
           }
         ]
