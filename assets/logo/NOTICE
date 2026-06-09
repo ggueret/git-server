@@ -1,0 +1,24 @@
+git-server brand assets
+========================
+
+Files
+  git-server-mark.svg            Primary mark (light backgrounds)
+  git-server-mark-dark.svg       Mark for dark backgrounds
+  git-server-mark-mono.svg       Single-ink mark
+  git-server-favicon.svg         Favicon, filled source node (best at 16 px)
+  git-server-favicon-outline.svg Favicon, outline source node (matches the mark)
+  favicon.ico                    Multi-size icon (16 / 32 / 48)
+  git-server-lockup.svg          Mark + wordmark
+
+Colors
+  Ink    #1f2937
+  Rust   #C2410C (light)  /  #E2571A (dark)
+
+Typography
+  The wordmark is set in JetBrains Mono SemiBold and converted to outlines,
+  so no font dependency remains in the SVG. JetBrains Mono is licensed under
+  the SIL Open Font License 1.1.
+  https://github.com/JetBrains/JetBrainsMono
+
+The marks are part of the git-server project and released under the same
+license as the project (MIT).

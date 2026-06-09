@@ -1,6 +1,11 @@
-# git-server
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/logo/git-server-lockup-dark.svg">
+    <img src="assets/logo/git-server-lockup.svg" width="240" alt="git-server">
+  </picture>
+</p>
 
-Dependency-free smart HTTP Git server for local testing.
+<p align="center">Dependency-free smart HTTP Git server for local testing.</p>
 
 A standalone server that serves bare Git repositories over HTTP for `git clone` and `git fetch`, without requiring the `git` binary at runtime. Built with [gitoxide](https://github.com/GitoxideLabs/gitoxide) for native Git operations and [Axum](https://github.com/tokio-rs/axum) / [Tokio](https://tokio.rs) for asynchronous HTTP.
 
@@ -55,7 +60,6 @@ Repository listing response:
   {
     "name": "my-project.git",
     "relative_path": "my-project.git",
-    "absolute_path": "/srv/repos/my-project.git",
     "description": "My project"
   }
 ]
