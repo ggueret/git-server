@@ -109,7 +109,11 @@ fn create_fixture(
 
 fn run_git(args: &[&str], cwd: Option<&Path>) {
     let mut cmd = Command::new("git");
-    cmd.args(args)
+    cmd.arg("-c")
+        .arg("gc.auto=0")
+        .arg("-c")
+        .arg("maintenance.auto=false")
+        .args(args)
         .env("GIT_AUTHOR_NAME", "Bench")
         .env("GIT_AUTHOR_EMAIL", "bench@test.com")
         .env("GIT_COMMITTER_NAME", "Bench")
