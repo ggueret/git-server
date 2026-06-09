@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1774491868236,
+  "lastUpdate": 1781028157640,
   "repoUrl": "https://github.com/ggueret/git-server",
   "entries": {
     "git-server Benchmarks": [
@@ -1451,6 +1451,66 @@ window.BENCHMARK_DATA = {
             "name": "ref_advertisement/advertise/large",
             "value": 402120,
             "range": "± 1678",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "ggueret@users.noreply.github.com",
+            "name": "Geoffrey Guéret",
+            "username": "ggueret"
+          },
+          "committer": {
+            "email": "g.gueret@gmail.com",
+            "name": "Geoffrey Guéret",
+            "username": "ggueret"
+          },
+          "distinct": true,
+          "id": "bb34fe7ccaca18fcb7a919eaaffeb14e842811f0",
+          "message": "fix(bench): avoid flaky thin-pack fixture push\n\ngit push --all to a freshly initialized bare repo intermittently\nfailed with \"Could not read <oid>\" / \"eof before pack header\" because\ngit sends a thin pack whose base objects are absent from the empty\nremote. Pass --no-thin to always send a complete pack.",
+          "timestamp": "2026-06-09T19:55:37+02:00",
+          "tree_id": "5b59ec56f63f4f06736ff0d27e8ce729ccd0b0d3",
+          "url": "https://github.com/ggueret/git-server/commit/bb34fe7ccaca18fcb7a919eaaffeb14e842811f0"
+        },
+        "date": 1781028157320,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "concurrent_clones/clones/1",
+            "value": 104099502,
+            "range": "± 10247467",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "concurrent_clones/clones/2",
+            "value": 117187131,
+            "range": "± 11913287",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "concurrent_clones/clones/4",
+            "value": 164512351,
+            "range": "± 15172940",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "concurrent_clones/clones/8",
+            "value": 268394522,
+            "range": "± 8039214",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "concurrent_clones/clones/16",
+            "value": 485280537,
+            "range": "± 12104507",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "concurrent_clones/clones/32",
+            "value": 967443379,
+            "range": "± 6964514",
             "unit": "ns/iter"
           }
         ]
