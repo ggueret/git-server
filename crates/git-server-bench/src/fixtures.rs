@@ -98,8 +98,8 @@ fn create_fixture(
     }
 
     // Push all refs
-    run_git(&["push", "origin", "--all"], Some(&work_dir));
-    run_git(&["push", "origin", "--tags"], Some(&work_dir));
+    run_git(&["push", "--no-thin", "origin", "--all"], Some(&work_dir));
+    run_git(&["push", "--no-thin", "origin", "--tags"], Some(&work_dir));
 
     Fixture {
         _dir: dir,
