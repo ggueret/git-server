@@ -4,7 +4,7 @@ use std::process::Command;
 
 use tempfile::TempDir;
 
-use helpers::{TestServer, create_bare_repo_with_commits};
+use helpers::{TestServer, create_bare_repo_with_commits, create_working_repo_with_commits};
 
 #[tokio::test(flavor = "multi_thread")]
 async fn clone_bare_repo() {
@@ -16,6 +16,47 @@ async fn clone_bare_repo() {
     let clone_path = clone_dir.path().join("cloned");
 
     let url = server.url("test.git");
+    let cp = clone_path.clone();
+    let out = tokio::task::spawn_blocking(move || {
+        Command::new("git")
+            .args(["clone", &url, cp.to_str().unwrap()])
+            .output()
+            .expect("git clone")
+    })
+    .await
+    .unwrap();
+    assert!(
+        out.status.success(),
+        "git clone failed: stdout={}, stderr={}",
+        String::from_utf8_lossy(&out.stdout),
+        String::from_utf8_lossy(&out.stderr),
+    );
+
+    // Verify we have 3 commits
+    let out = Command::new("git")
+        .args(["log", "--oneline"])
+        .current_dir(&clone_path)
+        .output()
+        .expect("git log");
+    assert!(out.status.success(), "git log failed");
+
+    let log = String::from_utf8_lossy(&out.stdout);
+    let lines: Vec<&str> = log.trim().lines().collect();
+    assert_eq!(lines.len(), 3, "expected 3 commits, got: {log}");
+
+    server.stop().await;
+}
+
+#[tokio::test(flavor = "multi_thread")]
+async fn clone_non_bare_repo() {
+    let root = TempDir::new().unwrap();
+    create_working_repo_with_commits(root.path(), "myproject", 3);
+
+    let server = TestServer::start(root.path()).await;
+    let clone_dir = TempDir::new().unwrap();
+    let clone_path = clone_dir.path().join("cloned");
+
+    let url = server.url("myproject");
     let cp = clone_path.clone();
     let out = tokio::task::spawn_blocking(move || {
         Command::new("git")

@@ -18,7 +18,7 @@ pub struct TestServer {
 impl TestServer {
     /// Start a test server serving repositories discovered under `root`.
     pub async fn start(root: &Path) -> Self {
-        let store = RepoStore::discover(root.to_path_buf(), 0).expect("discover repos");
+        let store = RepoStore::discover(root.to_path_buf(), 0, false).expect("discover repos");
         let router = git_server_http::router(store);
 
         let listener = TcpListener::bind("127.0.0.1:0")
@@ -142,4 +142,56 @@ pub fn create_bare_repo_with_commits(root: &Path, name: &str, commit_count: usiz
     }
 
     bare_path
+}
+
+/// Create a non-bare git repository (with a working tree) and a given number of commits.
+///
+/// Commits land on the `main` branch and each adds a file named `fileN.txt`.
+/// Returns the path to the repository.
+// Shared test helper: not exercised by every test binary that compiles this module.
+#[allow(dead_code)]
+pub fn create_working_repo_with_commits(root: &Path, name: &str, commit_count: usize) -> PathBuf {
+    let repo_path = root.join(name);
+
+    let out = Command::new("git")
+        .args(["init", "-b", "main", repo_path.to_str().unwrap()])
+        .output()
+        .expect("git init");
+    assert!(out.status.success(), "git init failed: {:?}", out);
+
+    for (key, val) in [("user.name", "Test User"), ("user.email", "test@test.com")] {
+        let out = Command::new("git")
+            .args(["config", key, val])
+            .current_dir(&repo_path)
+            .output()
+            .expect("git config");
+        assert!(out.status.success(), "git config failed: {:?}", out);
+    }
+
+    for i in 0..commit_count {
+        let filename = format!("file{i}.txt");
+        let content = format!("content of file {i}\n");
+        std::fs::write(repo_path.join(&filename), content).expect("write file");
+
+        let out = Command::new("git")
+            .args(["add", &filename])
+            .current_dir(&repo_path)
+            .output()
+            .expect("git add");
+        assert!(out.status.success(), "git add failed: {:?}", out);
+
+        let msg = format!("commit {i}");
+        let out = Command::new("git")
+            .args(["commit", "-m", &msg])
+            .current_dir(&repo_path)
+            .env("GIT_AUTHOR_NAME", "Test User")
+            .env("GIT_AUTHOR_EMAIL", "test@test.com")
+            .env("GIT_COMMITTER_NAME", "Test User")
+            .env("GIT_COMMITTER_EMAIL", "test@test.com")
+            .output()
+            .expect("git commit");
+        assert!(out.status.success(), "git commit failed: {:?}", out);
+    }
+
+    repo_path
 }
