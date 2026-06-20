@@ -2,12 +2,12 @@
 
 Dependency-free smart HTTP Git server for local testing.
 
-A standalone server that serves bare Git repositories over HTTP for `git clone` and `git fetch`, without requiring the `git` binary at runtime. Built with [gitoxide](https://github.com/GitoxideLabs/gitoxide) for native Git operations and [Axum](https://github.com/tokio-rs/axum) / [Tokio](https://tokio.rs) for asynchronous HTTP.
+A standalone server that serves Git repositories over HTTP for `git clone` and `git fetch`, without requiring the `git` binary at runtime. Built with [gitoxide](https://github.com/GitoxideLabs/gitoxide) for native Git operations and [Axum](https://github.com/tokio-rs/axum) / [Tokio](https://tokio.rs) for asynchronous HTTP.
 
 ## Features
 
 - **Single binary, no git required** -- all Git operations are handled natively, no runtime dependencies
-- **Multi-repository** -- serves all bare repos under a root directory with configurable scan depth
+- **Multi-repository** -- serves all repos (bare or with a working tree) under a root directory with configurable scan depth
 - **JSON API** -- repository listing endpoint for programmatic discovery
 - **Structured logging** -- text or JSON log output via tracing
 
@@ -16,7 +16,7 @@ A standalone server that serves bare Git repositories over HTTP for `git clone` 
 ```sh
 cargo install --path crates/git-server
 
-# Serve all bare repos under ./repos
+# Serve all repos under ./repos
 git-server ./repos
 
 # Clone from the server
@@ -29,7 +29,7 @@ git clone http://127.0.0.1:3000/my-project.git
 git-server [OPTIONS] <ROOT>
 
 Arguments:
-  <ROOT>  Root directory containing bare Git repositories
+  <ROOT>  Root directory to scan for Git repositories
 
 Options:
   -b, --bind <ADDR>              Bind address [default: 127.0.0.1]
@@ -38,6 +38,7 @@ Options:
       --log-format <FORMAT>      Log format: text or json [default: text]
   -w, --workers <N>              Number of Tokio worker threads
       --max-depth <N>            Max directory depth for repo discovery [default: 3]
+      --bare-only                Only serve bare repositories (skip working trees)
 ```
 
 ## API

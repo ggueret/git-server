@@ -12,7 +12,7 @@ use git_server_core::discovery::RepoStore;
     about = "Standalone smart HTTP Git server"
 )]
 struct Cli {
-    /// Root directory containing bare Git repositories
+    /// Root directory to scan for Git repositories
     root: PathBuf,
 
     /// Bind address
@@ -38,6 +38,10 @@ struct Cli {
     /// Max directory depth for repo discovery
     #[arg(long, default_value_t = 3)]
     max_depth: u32,
+
+    /// Only serve bare repositories (skip repositories that have a working tree)
+    #[arg(long)]
+    bare_only: bool,
 }
 
 #[derive(Clone, clap::ValueEnum)]
@@ -69,7 +73,7 @@ fn main() -> anyhow::Result<()> {
         anyhow::bail!("root path '{}' is not a directory", cli.root.display());
     }
 
-    let store = RepoStore::discover(cli.root.clone(), cli.max_depth)?;
+    let store = RepoStore::discover(cli.root.clone(), cli.max_depth, cli.bare_only)?;
     let repos = store.list();
     info!(count = repos.len(), "discovered repositories");
     for repo in repos {

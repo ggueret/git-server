@@ -134,7 +134,7 @@ mod tests {
 
     fn test_store(tmp: &TempDir) -> RepoStore {
         create_bare_repo(&tmp.path().join("test.git"));
-        RepoStore::discover(tmp.path().to_path_buf(), 0).unwrap()
+        RepoStore::discover(tmp.path().to_path_buf(), 0, false).unwrap()
     }
 
     #[tokio::test]
